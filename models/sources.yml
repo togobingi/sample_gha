@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: postgres
+    description: Raw
+    project: dbt-example-pav
+    dataset: ec_data
+    tables:
+      - name: customer
+      - name: geolocation
+      - name: order
+      - name: order_item
+      - name: order_payment
+      - name: order_review
+      - name: product
+      - name: product_category_name_translation
+      - name: seller

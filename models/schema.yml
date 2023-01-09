@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: customer_model_sample
+    description: "A model that holds that holds customer information."
+    columns:
+      - name: customer_id
+        description: "The primary key for this table and the identifier for each customer"
+        tests:
+          - unique
+          - not_null
+
+      - name: zip_code
+        description: "The zip code of a customer."
+        
+      - name: first_order_id
+        description: "The first order id of a customer"
+        tests:
+        - unique
