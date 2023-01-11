@@ -1,0 +1,13 @@
+dbt: # Be sure to change this to your dbt project name
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      keyfile: "/bigquery_service_account.json"
+      project: "dbt-example-pav"
+      dataset: "dev"
+      location: "europe-west3"
+      threads: 8
+      timeout_seconds: 300
+      priority: interactive

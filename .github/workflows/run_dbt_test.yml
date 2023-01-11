@@ -1,4 +1,4 @@
-name: schedule_dbt_job
+name: dbt_test_run
 
 on:
   push:
@@ -7,9 +7,7 @@ on:
       - development
 env:
   DBT_PROFILES_DIR: ./
-
-
-DBT_GOOGLE_BIGQUERY_KEYFILE: credentials/bigquery_service_account.json 
+  DBT_GOOGLE_BIGQUERY_KEYFILE: /bigquery_service_account.json 
 
 jobs:
   run_dbt_tests:
@@ -33,13 +31,24 @@ jobs:
 
         - name: Generate BigQuery service account credentials
           working-directory: ./
+          run: touch /bigquery_service_account.json && echo "$KEYFILE" > /bigquery_service_account.json
           #run: 'echo "$KEYFILE" > credentials/bigquery_service_account.json'
-          run: echo "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE }}" | > credentials/bigquery_service_account.json
+          #run: echo "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE }}" | > /bigquery_service_account.json
           shell: bash
           env:
+            #KEYFILE: {{ env_var('DBT_EXAMPLE_PRIVATE_KEY') }}
             KEYFILE: ${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE }}
 
+        - name: Debugging steps - view content of creds
+          run: cat /bigquery_service_account.json
+
+        - name: Debug dbt models
+          run: dbt debug --no-version-check --profiles-dir ./
+
+        #- name: Run dbt models
+        #  run: dbt run --no-version-check --profiles-dir ./
 
         - name: Test dbt models
-          run: dbt test --no-version-check --profiles-dir .
+          run: dbt test --no-version-check --profiles-dir ./
+          
        
