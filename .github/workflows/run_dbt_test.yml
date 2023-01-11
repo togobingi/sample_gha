@@ -32,7 +32,7 @@ jobs:
         - name: Generate BigQuery service account credentials
           working-directory: ./
           #run: touch /bigquery_service_account.json && echo "$KEYFILE" > credentials/bigquery_service_account.json
-          run: echo "$KEYFILE" > /bigquery_service_account.json
+          run: echo "$KEYFILE" > credentials/bigquery_service_account.json
           #run: 'echo "$KEYFILE" > credentials/bigquery_service_account.json'
           #run: echo "${{ secrets.DBT_GOOGLE_BIGQUERY_KEYFILE }}" | > /bigquery_service_account.json
           shell: bash
