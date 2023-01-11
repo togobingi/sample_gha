@@ -3,7 +3,7 @@ target/
 dbt_modules/
 .config/.user.yml
 #/profiles.yml
-/credentials
+#/credentials
 
 # Virtual envs
 venv/
