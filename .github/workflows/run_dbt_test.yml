@@ -4,7 +4,7 @@ on:
   push:
       branches:
       # run on push to development branch
-      - development
+      #- development
 env:
   DBT_PROFILES_DIR: ./
   DBT_GOOGLE_BIGQUERY_KEYFILE: /bigquery_service_account.json 
