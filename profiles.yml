@@ -4,7 +4,7 @@ dbt: # Be sure to change this to your dbt project name
     dev:
       type: bigquery
       method: service-account
-      keyfile: "/bigquery_service_account.json"
+      keyfile: "credentials/bigquery_service_account.json"
       project: "dbt-example-pav"
       dataset: "dev"
       location: "europe-west3"
